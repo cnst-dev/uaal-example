@@ -14,18 +14,12 @@ public class NativeAPI {
 
 public class Cube : MonoBehaviour
 {
-    public Text text;    
+    public Text text; 
+    string lastStringColor = "";
+
     void appendToText(string line) { text.text += line + "\n"; }
 
-    void Update()
-    {
-        transform.Rotate(0, Time.deltaTime*10, 0);
-		
-		if (Application.platform == RuntimePlatform.Android)
-            if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
-    }
-
-    string lastStringColor = "";
+    
     void ChangeColor(string newColor)
     {
         appendToText( "Chancing Color to " + newColor );
@@ -36,6 +30,18 @@ public class Cube : MonoBehaviour
         else if (newColor == "blue") GetComponent<Renderer>().material.color = Color.blue;
         else if (newColor == "yellow") GetComponent<Renderer>().material.color = Color.yellow;
         else GetComponent<Renderer>().material.color = Color.black;
+    }
+    
+    void RotateLeft()
+    {
+        appendToText( "Rotate to Left" );
+        transform.Rotate(0, 10, 0);
+    }
+    
+    void RotateRight()
+    {
+        appendToText( "Rotate to Right" );
+        transform.Rotate(0, -10, 0);
     }
 
 
@@ -61,12 +67,7 @@ public class Cube : MonoBehaviour
     {
         GUIStyle style = new GUIStyle("button");
         style.fontSize = 30;        
-        if (GUI.Button(new Rect(10, 10, 200, 100), "Show Alert", style)) ChangeColor("red");
-        // if (GUI.Button(new Rect(10, 110, 200, 100), "Blue", style)) ChangeColor("blue");
-        // if (GUI.Button(new Rect(10, 300, 400, 100), "Show Main With Color", style)) showHostMainWindow();
-
-        // if (GUI.Button(new Rect(10, 400, 400, 100), "Unload", style)) Application.Unload();
-        // if (GUI.Button(new Rect(440, 400, 400, 100), "Quit", style)) Application.Quit();
+        if (GUI.Button(new Rect(10, 10, 200, 100), "Show Modal", style)) showHostMainWindow();
     }
 }
 
