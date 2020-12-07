@@ -9,7 +9,7 @@
 import Foundation
 import UnityFramework
 
-class UnityManager: UIResponder, UIApplicationDelegate, UnityFrameworkListener {
+class UnityManager: UIResponder, UIApplicationDelegate, UnityFrameworkListener, NativeCallsProtocol {
 
     private struct UnityMessage {
         let objectName : String?
@@ -80,11 +80,16 @@ class UnityManager: UIResponder, UIApplicationDelegate, UnityFrameworkListener {
     }
 
     // MARK - Callback from UnityFrameworkListener
-
     func unityDidUnload(_ notification: Notification!) {
         ufw.unregisterFrameworkListener(self)
         ufw = nil
         UnityManager.hostMainWindow?.makeKeyAndVisible()
+    }
+
+    func showHostMainWindow(_ color: String!) {
+        let alert = UIAlertController(title: "From Unity", message: "The cube is \(color ?? "blank")", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel))
+        UnityManager.getUnityRootViewController().present(alert, animated: true)
     }
 
     // MARK: - Private functions (called within the class)
@@ -102,7 +107,7 @@ class UnityManager: UIResponder, UIApplicationDelegate, UnityFrameworkListener {
         ufw = UnityFrameworkLoad()!
         ufw.setDataBundleId("com.unity3d.framework")
         ufw.register(self)
-//        NSClassFromString("FrameworkLibAPI")?.registerAPIforNativeCalls(self)
+        NSClassFromString("FrameworkLibAPI")?.registerAPIforNativeCalls(self)
 
         ufw.runEmbedded(withArgc: CommandLine.argc, argv: CommandLine.unsafeArgv, appLaunchOpts: UnityManager.launchOpts)
 
