@@ -61,12 +61,12 @@ public class Cube : MonoBehaviour
     {
         GUIStyle style = new GUIStyle("button");
         style.fontSize = 30;        
-        if (GUI.Button(new Rect(10, 10, 200, 100), "Red", style)) ChangeColor("red");
-        if (GUI.Button(new Rect(10, 110, 200, 100), "Blue", style)) ChangeColor("blue");
-        if (GUI.Button(new Rect(10, 300, 400, 100), "Show Main With Color", style)) showHostMainWindow();
+        if (GUI.Button(new Rect(10, 10, 200, 100), "Show Alert", style)) ChangeColor("red");
+        // if (GUI.Button(new Rect(10, 110, 200, 100), "Blue", style)) ChangeColor("blue");
+        // if (GUI.Button(new Rect(10, 300, 400, 100), "Show Main With Color", style)) showHostMainWindow();
 
-        if (GUI.Button(new Rect(10, 400, 400, 100), "Unload", style)) Application.Unload();
-        if (GUI.Button(new Rect(440, 400, 400, 100), "Quit", style)) Application.Quit();
+        // if (GUI.Button(new Rect(10, 400, 400, 100), "Unload", style)) Application.Unload();
+        // if (GUI.Button(new Rect(440, 400, 400, 100), "Quit", style)) Application.Quit();
     }
 }
 
