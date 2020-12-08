@@ -10,47 +10,55 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    // MARK: - Outlets
     private var colorButton: UIButton!
     private var rotateLeftButton: UIButton!
     private var rotateRightButton: UIButton!
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         UnityManager.showUnity()
-        let unityView = UnityManager.getUnityView()
 
+        guard let unityView = UnityManager.getUnityView() else { return }
+        loadView(in: unityView)
+    }
+
+    // MARK: - Methods
+    func loadView(in root: UIView) {
         colorButton = UIButton(type: .system)
         colorButton.setTitle("Red", for: .normal)
         colorButton.frame = CGRect(x: 10, y: 150, width: 100, height: 44)
         colorButton.backgroundColor = .red
         colorButton.addTarget(self, action: #selector(changeColorInUnity), for: .touchUpInside)
-        unityView?.addSubview(colorButton)
+        root.addSubview(colorButton)
 
         rotateLeftButton = UIButton(type: .system)
         rotateLeftButton.setTitle("Rotate Left", for: .normal)
         rotateLeftButton.frame = CGRect(x: 10, y: 200, width: 100, height: 44)
         rotateLeftButton.backgroundColor = .green
         rotateLeftButton.addTarget(self, action: #selector(rotateLeftInUnity), for: .touchUpInside)
-        unityView?.addSubview(rotateLeftButton)
+        root.addSubview(rotateLeftButton)
 
         rotateRightButton = UIButton(type: .system)
         rotateRightButton.setTitle("Rotate Right", for: .normal)
         rotateRightButton.frame = CGRect(x: 10, y: 250, width: 100, height: 44)
         rotateRightButton.backgroundColor = .yellow
         rotateRightButton.addTarget(self, action: #selector(rotateRightInUnity), for: .touchUpInside)
-        unityView?.addSubview(rotateRightButton)
+        root.addSubview(rotateRightButton)
     }
 
-    @objc func changeColorInUnity() {
+    // MARK: - Actions
+    @objc private func changeColorInUnity() {
         UnityManager.sendUnityMessage("Cube", methodName: "ChangeColor", message: "red")
     }
 
-    @objc func rotateLeftInUnity() {
+    @objc private func rotateLeftInUnity() {
         UnityManager.sendUnityMessage("Cube", methodName: "RotateLeft", message: "")
     }
 
-    @objc func rotateRightInUnity() {
+    @objc private func rotateRightInUnity() {
         UnityManager.sendUnityMessage("Cube", methodName: "RotateRight", message: "")
     }
 }

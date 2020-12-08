@@ -33,7 +33,6 @@
 
 /* Begin PBXFileReference section */
 		9D15FC3F2264A1600006315A /* NativeiOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NativeiOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D15FC462264A1600006315A /* MainViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MainViewController.mm; sourceTree = "<group>"; };
 		9D15FC492264A1600006315A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D15FC4B2264A1600006315A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D15FC4E2264A1600006315A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,7 +77,6 @@
 		9D15FC412264A1600006315A /* NativeiOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				9D15FC462264A1600006315A /* MainViewController.mm */,
 				9D15FC482264A1600006315A /* Main.storyboard */,
 				9D15FC4B2264A1600006315A /* Assets.xcassets */,
 				9D15FC4D2264A1600006315A /* LaunchScreen.storyboard */,
